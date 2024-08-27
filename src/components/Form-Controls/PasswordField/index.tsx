@@ -2,10 +2,11 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
     FormControl,
+    FormHelperText,
     IconButton,
     InputAdornment,
     InputLabel,
-    OutlinedInput
+    OutlinedInput,
 } from "@mui/material";
 import { useState } from "react";
 import { Control, Controller } from "react-hook-form";
@@ -25,9 +26,9 @@ type TextFieldProps = {
 
 function PasswordField(props: TextFieldProps) {
     const { form, name, label, disabled } = props;
-    const { errors, touchedFields } = form.formState;
+    const { errors } = form.formState;
 
-    const hasError = touchedFields?.[name] && errors?.[name];
+    const hasError = errors?.[name];
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -39,21 +40,6 @@ function PasswordField(props: TextFieldProps) {
 
     return (
         <div>
-            {/* <Controller
-                name={name}
-                control={form.control}
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        error={!!hasError}
-                        margin="normal"
-                        helperText={errors?.[name]?.message}
-                        label={label}
-                        disabled={disabled}
-                        fullWidth
-                    />
-                )}
-            /> */}
             <FormControl
                 margin="normal"
                 error={!!hasError}
@@ -86,6 +72,7 @@ function PasswordField(props: TextFieldProps) {
                         />
                     )}
                 />
+                <FormHelperText error={!!hasError}>{errors?.[name]?.message}</FormHelperText>
             </FormControl>
         </div>
     );

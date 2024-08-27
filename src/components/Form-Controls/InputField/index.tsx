@@ -16,9 +16,9 @@ type TextFieldProps = {
 
 function InputField(props: TextFieldProps) {
     const { form, name, label, disabled } = props;
-    const { errors, touchedFields } = form.formState;
+    const { errors } = form.formState;
 
-    const hasError = touchedFields?.[name] && errors?.[name];
+    const hasError = errors?.[name];
 
     return (
         <Controller
