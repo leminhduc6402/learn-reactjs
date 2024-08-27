@@ -2,9 +2,10 @@ import { Box, Container, Grid, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import productApi from "src/api/productApi";
 import ProductSkeletonList from "../components/ProductSkeletonList";
+import ProductList from "../components/ProductList";
 
 function ListPage() {
-    const [productList, setProductList] = useState([]);
+    const [productList, setProductList] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         (async () => {
@@ -14,7 +15,7 @@ function ListPage() {
             } catch (error) {
                 console.log("Failed to fetch product list: ", error);
             }
-            setLoading(true);
+            setLoading(false);
         })();
     }, []);
     return (
@@ -25,9 +26,15 @@ function ListPage() {
                         <Grid item sx={{ width: "250px" }}>
                             <Paper elevation={0}>Left column</Paper>
                         </Grid>
-                        <Grid item sx={{ flex: "1 1 auto" }}>
+                        <Grid item sx={{ flex: "1 1 0" }}>
                             <Paper elevation={0}>
-                                {loading ? <ProductSkeletonList /> : <>Product List</>}
+                                {loading ? (
+                                    <ProductSkeletonList />
+                                ) : (
+                                    <>
+                                        <ProductList data={productList}/>
+                                    </>
+                                )}
                             </Paper>
                         </Grid>
                     </Grid>
