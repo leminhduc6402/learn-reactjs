@@ -7,7 +7,7 @@ const productApi = {
             !params._page || params._page <= 1 ? 0 : (params._page - 1) * (params._limit || 50);
         delete newParams._page;
         const productList = await axiosClient.get("/products", { params: newParams });
-        const count = await axiosClient.get("/products/count", { params: newParams });
+        const count: number = await axiosClient.get("/products/count", { params: newParams });
 
         return {
             data: productList,

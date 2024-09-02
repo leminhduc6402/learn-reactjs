@@ -1,14 +1,13 @@
-import React from "react";
+import { SnackbarProvider } from "notistack";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.scss";
-import { Provider } from "react-redux";
 import store from "./store/store.ts";
-import { SnackbarProvider } from "notistack";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <React.StrictMode>
+    <>
         <Provider store={store}>
             <BrowserRouter>
                 <SnackbarProvider anchorOrigin={{ vertical: "top", horizontal: "center" }}>
@@ -16,5 +15,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 </SnackbarProvider>
             </BrowserRouter>
         </Provider>
-    </React.StrictMode>,
+    </>,
 );
