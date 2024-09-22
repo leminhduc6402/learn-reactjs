@@ -1,10 +1,10 @@
 import { Tab, Tabs } from "@mui/material";
 
 type ProductSortProps = {
-    currentSord: string;
+    currentSort: string; 
     onChange: (newvalue: string) => any;
 };
-function ProductSort({ currentSord, onChange }: ProductSortProps) {
+function ProductSort({ currentSort, onChange }: ProductSortProps) {
     const handleSortChange = (e: any, newvalue: string) => {
         console.log("Product Sort: ", e);
         if (onChange) {
@@ -14,7 +14,7 @@ function ProductSort({ currentSord, onChange }: ProductSortProps) {
     return (
         <>
             <Tabs
-                value={currentSord}
+                value={currentSort}
                 onChange={handleSortChange}
                 indicatorColor="primary"
                 textColor="primary"
